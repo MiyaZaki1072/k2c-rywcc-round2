@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kit2Code RYWCC รอบที่ 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=IBM+Plex+Sans+Thai:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0600;
+      --amber: #ffb000;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--amber);
+      font-family: "IBM Plex Mono", "IBM Plex Sans Thai", monospace;
+      font-size: clamp(20px, 5.5vw, 28px);
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 auto 40px;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    /* hero fills the whole first screen */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 16px;
+      left: 0;
+      right: 0;
+      margin: 0;
+      animation: bob 1.5s infinite;
+    }
+
+    @keyframes bob { 50% { transform: translateY(6px); } }
+
+    /* CRT dark edges */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.6));
+      z-index: 10;
+    }
+
+    ::selection { background: var(--amber); color: var(--bg); }
+
+    a { color: var(--amber); }
+    a:hover { background: var(--amber); color: var(--bg); }
+
+    :focus-visible { outline: 2px dashed var(--amber); outline-offset: 4px; }
+
+    h1 { font-size: 2em; line-height: 1.2; }
+    h2 { font-size: 1.3em; }
+    h2::before { content: "== "; }
+    h2::after { content: " =="; }
+
+    pre, .ascii {
+      font-family: "VT323", "IBM Plex Sans Thai", monospace;
+      font-size: 1.4em;
+      line-height: 1;
+      text-align: left;
+      white-space: pre;
+      display: inline-block;
+      margin: 0;
+    }
+
+    #cat { cursor: pointer; }
+
+    ul { display: inline-block; text-align: left; margin: 0; padding-left: 1.5em; list-style: "* "; }
+
+    hr { border: 0; border-top: 2px dashed var(--amber); margin: 64px 0; }
+
+    /* inverse video, like a highlighted DOS line */
+    .optional {
+      background: var(--amber);
+      color: var(--bg);
+      font-weight: bold;
+      padding: 16px;
+      margin-top: 32px;
+    }
+
+    /* prize: an ASCII present you click to open */
+    .prize { border: 6px double var(--amber); padding: 24px 16px; }
+    .prize h2 { margin-top: 0; }
+
+    .gift {
+      padding: 0;
+      background: none;
+      border: 0;
+      color: var(--amber);
+      cursor: pointer;
+    }
+
+    .gift .ascii { display: block; }
+
+    .gift .lid { transition: transform 0.7s ease-out, opacity 0.7s; }
+
+    .gift:hover:not(.open) { animation: shake 0.5s; }
+
+    /* opening: lid flies off, then the box is replaced by the message */
+    .gift.open { pointer-events: none; }
+    .gift.open .lid { transform: translate(90px, -80px) rotate(30deg); opacity: 0; }
+    .gift.open .base { animation: vanish 0s 0.7s both; }
+
+    .gift-wrap { position: relative; }
+
+    /* the message sits where the box was */
+    .inside {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      animation: appear 0s 0.7s both;
+    }
+
+    @keyframes shake {
+      25% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+    }
+
+    /* once the lid is gone, swap the box for the message */
+    @keyframes vanish { to { opacity: 0; } }
+    @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+
+    /* authors */
+    .label { margin: 24px 0 8px; }
+
+    .names { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; }
+    .names span::before { content: "["; }
+    .names span::after { content: "]"; }
+
+    .main { background: var(--amber); color: var(--bg); padding: 0 8px; font-weight: bold; }
+
+    [hidden] { display: none !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gift .lid { transition: none; }
+      .hint, .gift:hover:not(.open), .inside { animation: none; }
+      .gift.open .base { animation: none; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <pre id="cat" title="กดแมว"> /\_/\
+( -.- ) z
+ > ^ <</pre>
+
+    <h1>KIT2CODE RYWCC <span style="white-space: nowrap">รอบที่ 2</span></h1>
+    <p>ค่าย 1 สอวน. RYW</p>
+    <p class="hint">เลื่อนลง ↓</p>
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>รายละเอียดการแข่งขัน</h2>
+    <ul>
+      <li>วันที่ 15 ตุลาคม 2026</li>
+      <li>เวลา 18:00 - 20:00 น. <span style="white-space: nowrap">(เวลาประเทศไทย)</span></li>
+      <li>ใช้เวลา 2 ชั่วโมง</li>
+      <li>จำนวน 6 ข้อ</li>
+      <li>จัดแข่งบน <a href="https://cms.rywcc.org" target="_blank" rel="noopener">cms.rywcc.org</a></li>
+      <li>เปิด register ก่อน 15 นาที (17:45 น.)</li>
+    </ul>
+    <p class="optional">optional ไม่ได้มีผลกับค่ายเเต่อย่างใด ทำมาเพื่อให้เด็กค่ายได้ลองสอบ กันสนุกๆ ;)</p>
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>ขอบเขตข้อสอบ</h2>
+    <p>ค่าย 1 เเหละออกไม่เกินหรอก ;&gt;</p>
+    <p>ไปลองทำข้อสอบเก่ากันก่อนได้นะ ว่างๆ :)<br>
+      <a href="https://codeforces.com/group/NGBiOfh0FE" target="_blank" rel="noopener">ข้อสอบเก่าบน Codeforces</a>
+    </p>
+  </div>
+
+  <hr>
+
+  <div class="prize">
+    <h2>มีรางวัลด้วยนะ</h2>
+    <div class="gift-wrap">
+      <button class="gift" id="gift" aria-label="เปิดกล่องของขวัญ" aria-expanded="false">
+<span class="ascii lid">     \  /
+      \/
+[_____||_____]</span><span class="ascii base"> |    ||    |
+ |    ||    |
+ |____||____|</span>
+      </button>
+      <p class="inside" id="inside" hidden>น่าจะมีเเหละมั้ง &gt;;)</p>
+    </div>
+    <p id="tap">[ กดเปิดกล่อง ]</p>
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>ผู้จัดทำ</h2>
+    <p class="label">Organizer</p>
+    <div class="names">
+      <span class="main">MiyaZaki1072</span>
+    </div>
+    <p class="label">Task-Writer</p>
+    <div class="names">
+      <span>atsuiiw</span>
+      <span>Joji</span>
+      <span>WWz</span>
+      <span>NortGlG</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>นับถอยหลัง</h2>
+    <p>เปิด register 17:45 น.</p>
+    <p id="countdown">...</p>
+    <p id="ready" hidden>
+      <a href="https://cms.rywcc.org" target="_blank" rel="noopener">cms.rywcc.org</a><br>
+      สมัครด้วยชื่อจริงนะ ;)
+    </p>
+  </div>
+
+  <script>
+    // click the cat
+    var cat = document.getElementById("cat");
+    var asleep = cat.textContent;
+    cat.addEventListener("click", function () {
+      cat.textContent = " /\\_/\\\n( o.o ) เมี้ยว~\n > ^ <";
+      setTimeout(function () { cat.textContent = asleep; }, 1500);
+    });
+
+    // open the present
+    var gift = document.getElementById("gift");
+    gift.addEventListener("click", function () {
+      gift.classList.add("open");
+      gift.setAttribute("aria-expanded", "true");
+      document.getElementById("tap").style.visibility = "hidden";
+      document.getElementById("inside").hidden = false;
+    });
+
+    // countdown to registration: 15 Oct 2026 17:45 Thai time (15 min before start)
+    var target = new Date("2026-10-15T17:45:00+07:00").getTime();
+    var countdown = document.getElementById("countdown");
+
+    function tick() {
+      var left = Math.floor((target - Date.now()) / 1000);
+      if (left <= 0) {
+        countdown.textContent = "เปิด register แล้ว!";
+        document.getElementById("ready").hidden = false;
+        clearInterval(timer);
+        return;
+      }
+      countdown.textContent =
+        "อีก " + Math.floor(left / 86400) + " วัน " +
+        Math.floor(left / 3600) % 24 + " ชั่วโมง " +
+        Math.floor(left / 60) % 60 + " นาที " +
+        left % 60 + " วินาที";
+    }
+
+    var timer = setInterval(tick, 1000);
+    tick();
+  </script>
+
+</body>
+</html>
