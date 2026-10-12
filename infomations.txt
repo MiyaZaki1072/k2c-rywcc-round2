@@ -1,0 +1,12 @@
+all the text need to be thai
+style simple html 1 files make it as simple as possible scroll site experience color is black and orange style
+Kit2Code rywcc round 2 for ryw posn camp 1
+author : MiyaZaki1072 atsuiiw Joji WWz NortGlG
+Scope for test is Camp 1 posn
+we have prices for top3 
+time 15 October 18.00-20.00
+
+Make a timer at the end of the site count down for 15 October 18.00 when done countdown make a clickable link to
+cms.rywcc.org register with real name pls ;)
+
+the experience is chill cat simple look like make in like 5 minutes simple html page with scrollable experience with click to reveal something
