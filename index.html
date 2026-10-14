@@ -144,13 +144,9 @@
     @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
 
     /* authors */
-    .label { margin: 24px 0 8px; }
-
     .names { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; }
     .names span::before { content: "["; }
     .names span::after { content: "]"; }
-
-    .main { background: var(--amber); color: var(--bg); padding: 0 8px; font-weight: bold; }
 
     [hidden] { display: none !important; }
 
@@ -182,7 +178,7 @@
       <li>เวลา 13:00 - 15:00 น. <span style="white-space: nowrap">(เวลาประเทศไทย)</span></li>
       <li>ใช้เวลา 2 ชั่วโมง</li>
       <li>จำนวน 6 ข้อ</li>
-      <li>จัดแข่งบน <a href="https://cms.rywcc.org" target="_blank" rel="noopener">cms.rywcc.org</a></li>
+      <li>จัดแข่งบนระบบ CMS</li>
       <li>ใช้ระบบ full feedback ในทุกข้อ</li>
       <li>ส่งโค้ดได้ทุก 1 นาที (cooldown 1 นาที)</li>
     </ul>
@@ -233,30 +229,14 @@
 
   <div>
     <h2>ผู้จัดทำ</h2>
-    <p class="label">Organizer</p>
     <div class="names">
-      <span class="main">MiyaZaki1072</span>
-    </div>
-    <p class="label">Task-Writer</p>
-    <div class="names">
+      <span>MiyaZaki1072</span>
       <span>atsuiiw</span>
       <span>Joji</span>
       <span>WWz</span>
       <span>NortGlG</span>
       <span>Wahlly</span>
     </div>
-  </div>
-
-  <hr>
-
-  <div>
-    <h2>นับถอยหลัง</h2>
-    <p>เปิด cms 12:45 น.</p>
-    <p id="countdown">...</p>
-    <p id="ready" hidden>
-      <a href="https://cms.rywcc.org" target="_blank" rel="noopener">cms.rywcc.org</a><br>
-      ทำsubtaskกันด้วยนะจะได้คะเเนนเยอะๆถูก ;)
-    </p>
   </div>
 
   <script>
@@ -276,28 +256,6 @@
       document.getElementById("tap").style.visibility = "hidden";
       document.getElementById("inside").hidden = false;
     });
-
-    // countdown to registration: 15 Oct 2026 12:45 Thai time (15 min before start)
-    var target = new Date("2026-10-15T12:45:00+07:00").getTime();
-    var countdown = document.getElementById("countdown");
-
-    function tick() {
-      var left = Math.floor((target - Date.now()) / 1000);
-      if (left <= 0) {
-        countdown.textContent = "เปิด cms แล้ว!";
-        document.getElementById("ready").hidden = false;
-        clearInterval(timer);
-        return;
-      }
-      countdown.textContent =
-        "อีก " + Math.floor(left / 86400) + " วัน " +
-        Math.floor(left / 3600) % 24 + " ชั่วโมง " +
-        Math.floor(left / 60) % 60 + " นาที " +
-        left % 60 + " วินาที";
-    }
-
-    var timer = setInterval(tick, 1000);
-    tick();
   </script>
 </body>
 </html>
