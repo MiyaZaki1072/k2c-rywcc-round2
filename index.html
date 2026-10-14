@@ -185,7 +185,6 @@
       <li>จัดแข่งบน <a href="https://cms.rywcc.org" target="_blank" rel="noopener">cms.rywcc.org</a></li>
       <li>ใช้ระบบ full feedback ในทุกข้อ</li>
       <li>ส่งโค้ดได้ทุก 1 นาที (cooldown 1 นาที)</li>
-      <li>เปิด register ก่อน 15 นาที (12:45 น.)</li>
     </ul>
     <p class="optional">optional ไม่ได้มีผลกับค่ายเเต่อย่างใด ทำมาเพื่อให้เด็กค่ายได้ลองสอบ กันสนุกๆ ;)</p>
   </div>
@@ -252,11 +251,11 @@
 
   <div>
     <h2>นับถอยหลัง</h2>
-    <p>เปิด register 12:45 น.</p>
+    <p>เปิด cms 12:45 น.</p>
     <p id="countdown">...</p>
     <p id="ready" hidden>
       <a href="https://cms.rywcc.org" target="_blank" rel="noopener">cms.rywcc.org</a><br>
-      สมัครด้วยชื่อจริงนะจะได้ให้รางวัลถูก ;)
+      ทำsubtaskกันด้วยนะจะได้คะเเนนเยอะๆถูก ;)
     </p>
   </div>
 
@@ -285,7 +284,7 @@
     function tick() {
       var left = Math.floor((target - Date.now()) / 1000);
       if (left <= 0) {
-        countdown.textContent = "เปิด register แล้ว!";
+        countdown.textContent = "เปิด cms แล้ว!";
         document.getElementById("ready").hidden = false;
         clearInterval(timer);
         return;
